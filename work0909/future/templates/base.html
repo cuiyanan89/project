@@ -6,25 +6,103 @@
         <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
         <style type="text/js" src="/static/js/bootstrap.min.js"></style>
         <style type="text/css">
+            li a{
+                margin: 0px 16px;
+            }
+            td{
+                line-height:45px;
+            }
         </style>
 
         <script type="text/javascript">
         </script>
 	</head>
-	<body>
+	<body style="background-color:#efefef;position:relative;">
+    <div style="width:920px;margin:0px auto; position:relative;">
 	    <div id="top">
             <div id="logo">
-            </div>
-            <div="menu">
+                <h2 style="float:left;">tofuture me</h2>
+                <div style="float:right;line-height:60px;">
+                    <div id="user">
+                        welcomeback cuiyanan
+                        <a href="">my account&nbsp;</a>
+                        <a href="">logout&nbsp;</a>
+                    </div>
+                </div>
+                <div class="navbar navbar-fixed-top" style="position:absolute; top:60px;">
+                    <div class="navbar-inner"style="height:30px;">
+                        <button type="button" class="btn btn-navbar">
+                        </button>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav">
+                                <li><a href="">Write a Letter to the Future</a></li>
+                                <li><a href="">Read Public Letters</a></li>
+                                <li><a href="">Help</a></li>
+                                <li><a href="">About us</a></li>
+                            </ul>
+                            <form class="form-search" style="float:right;">
+<!--                                <input class="input-medium search-query" type="text" style="margin:5px 0px;"/>
+                                <input type="submit" class="btn" value="search" style="margin-top:0px;margin-right:10px;"/>-->
+                                <div class="input-append" style="margin:5px 20px;">
+                                    <input type="text"class="span2 search-query">
+                                    <button type="submit"class="btn">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="middle">
-            <div id="middle-left">
+        </div>
+        <div id="middle" style="position:absolute;left:111px;top:120px;margin:0px auto;width:960px;">
+            <div id="middle-left" class="span8" style="border-radius:5px;width:600px;background-color:white;height:470px;">
+            <div style="margin-top:5px;margin-left:25px;">what do you want to say to future youself?</div>
+                <hr style="margin:10px 20px;"/>
+                <form style="margin:0px 90px;">
+                    <table style="text-align:right;">
+                        <tr>
+                            <td>From:</td>
+                            <td style="text-align:left;">hi.cuiyanan@gmail.com(<a href="">edit</a>)</td>
+                        </tr>
+                        <tr>
+                            <td>E-mail Address:</td>
+                            <td style="text-align:left;"><input type="text"value="hi.cuiyanan@gmail.com"/></td>
+                        </tr>
+                        <tr>
+                            <td>Subject:</td>
+                            <td style="text-align:left;"><input type="text"value="A letter September 8th,2013"/></td>
+                        </tr>
+                        <tr>
+                            <td>Your Letter:</td>
+                            <td style="text-align:left;"><textarea value="Dear FutureMe,"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Deliver on:</td>
+                            <td style="text-align:left;"><input type="date"/></td>
+                        </tr>
+                        <tr>
+                            <td>Make this letter:</td>
+                            <td style="text-align:left;">&nbsp;&nbsp;<label style="display:inline-block;"><input type="radio" name="visible"checked="checked">Private&nbsp;&nbsp;&nbsp;</label><label style="display:inline-block;"><input type="radio"name="visible">Public(but anonymous)</label></td>
+                        </tr>
+                        <tr>
+                            <td>Add a picture?:</td>
+                            <td><label style="position:relative;"><input class="input-medium" type="text"id="img" style="margin-bottom:0px;"><input type="button" style="margin-left:4px;"value="choose"><input type="file"style="width:230px;position:absolute;left:0px;filter:alpha(opacity:0);opacity:0;"onchange="document.getElementById('img').value=this.value"><label></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:left;"><a href=""class="btn btn-primary">Send to the Future!</a></td>
+                        </tr>
+                    </table>
+                </form>
+                <hr style="margin:10px 20px;"/>
             </div>
-            <div id="middle-right">
+            <div id="middle-right" class="span4" style="border-radius:5px;background-color:white;height:470px;">
+                <div>
+                </div>
             </div>
         </div>
         <div id="bottom">
         </div>
+    </div>
 	</body>
 </html>
