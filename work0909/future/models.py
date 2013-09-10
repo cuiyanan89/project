@@ -13,4 +13,6 @@ class Letter(models.Model):
     deliverdate = models.DateField()
     currentdate = models.DateField(auto_now_add =True)
     picture = models.FileField(upload_to='./picture',blank=True,null=True)
+    public = models.BooleanField(default=False)
+    maturity = models.BooleanField(default=False)
     user = models.ForeignKey(User)

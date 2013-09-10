@@ -16,4 +16,5 @@ def login_view(req):
 
 def logout_view(req):
     pass
-
+#def model(req):
+#    return render(req,'modal.html',{})
