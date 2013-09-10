@@ -23,11 +23,18 @@
             <div id="logo">
                 <h2 style="float:left;">tofuture me</h2>
                 <div style="float:right;line-height:60px;">
+                    {%if user %}
                     <div id="user">
-                        welcomeback cuiyanan
-                        <a href="">my account&nbsp;</a>
+                        welcomeback cuiyanan&nbsp;·&nbsp;
+                        <a href="">my account&nbsp;</a>&nbsp;·&nbsp;
                         <a href="">logout&nbsp;</a>
                     </div>
+                    {%else%}
+                    <div id="user">
+                        <a href="">log in</a>&nbsp;·&nbsp;
+                        <a href="">Sign up</a>
+                    </div>
+                    {%endif%}
                 </div>
                 <div class="navbar navbar-fixed-top" style="width:920px; margin:0 auto;position:absolute; top:60px;">
                     <div class="navbar-inner"style="height:30px;">
@@ -54,7 +61,7 @@
             </div>
         </div>
         </div>
-<!--        <div id="middle" style="position:absolute;left:111px;top:120px;margin:0px auto;width:960px;">-->
+        <!--
             <div id="middle" style="margin:0 auto;padding-top:115px;width:960px;">
             <div id="middle-left" class="span8" style="border-radius:5px;width:600px;background-color:white;height:470px;">
             <div style="margin-top:5px;margin-left:25px;">what do you want to say to future youself?</div>
@@ -110,7 +117,9 @@
                     <a>read more letters</a>
                 </div>
             </div>
-        </div>
+        </div>-->
+        {%block middle%}
+        {%endblock%}
         <div id="bottom">
         </div>
     </div>
