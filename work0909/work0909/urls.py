@@ -18,5 +18,6 @@ urlpatterns = patterns('',
     url(r'^regist','future.views.regist'),
     url(r'^login/$','future.views.login_view'),
     url(r'^logout/$','future.views.logout_view'),
+    url(r'^account/$','future.views.account'),
 #    url(r'^model/$','future.views.model'),
 )

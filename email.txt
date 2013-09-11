@@ -1,4 +1,10 @@
 from 4:30pm to 8:00pm
-send to bchpan@csvt.net & myli@csvt.net
+send to bcpan@csvt.net & myli@csvt.net
 mail title subject
 [n12 name year-month-day]
+[done]
+    完成工作的进度
+    新技术，经验
+    疑问
+[todo]
+    

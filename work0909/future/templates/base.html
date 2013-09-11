@@ -21,13 +21,13 @@
     <div style="width:920px;padding:0 20px;margin:0px auto; position:relative;">
 	    <div id="top">
             <div id="logo">
-                <h2 style="float:left;">tofuture me</h2>
+                <a href="/index/"><h2 style="float:left;">tofuture me</h2></a>
                 <div style="float:right;line-height:60px;">
                     {%if user %}
                     <div id="user">
-                        welcomeback cuiyanan&nbsp;·&nbsp;
-                        <a href="">my account&nbsp;</a>&nbsp;·&nbsp;
-                        <a href="">logout&nbsp;</a>
+                        welcomeback {{user.username}}&nbsp;·&nbsp;
+                        <a href="/account/">my account</a>&nbsp;·&nbsp;
+                        <a href="/logout/">logout</a>&nbsp;
                     </div>
                     {%else%}
                     <div id="user" style="">
@@ -41,20 +41,20 @@
                                     <div class="control-group">
                                       <label class="control-label" for="inputEmail"style="margin-top:20px;">Email</label>
                                       <div class="controls">
-                                        <input type="text" id="inputEmail" placeholder="Email">
+                                        <input type="text" name="email" id="inputEmail" placeholder="Email">
                                       </div>
                                     </div>
                                     <div class="control-group">
                                       <label class="control-label" for="inputPassword"style="margin-top:20px;">Password</label>
                                       <div class="controls">
-                                        <input type="password" id="inputPassword" placeholder="Password">
+                                        <input type="password" name="password" id="inputPassword" placeholder="Password">
                                       </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                               <a href="#" style='float:left;margin-top:20px;height:0px;'>Forgot your password?</a>
-                              <button type="button" class="btn btn-primary"onclick="document.getElementById('')">Log in</button>
+                              <button type="button" class="btn btn-primary"onclick="document.getElementById('login_form').submit()">Log in</button>
                             </div>
                         </div>  
                         <div class="modal hide fade"  id="signup">
@@ -66,19 +66,19 @@
                                 <form class="form-horizontal"id="regist_form" action="/regist/" method="post">{% csrf_token %}
                                       <label class="control-label" for="inputEmail"style="margin-top:20px;">Enter Email Add</label>
                                       <div class="controls">
-                                        <input type="text" id="inputEmail" placeholder="Email">
+                                        <input type="text" name ="email" id="inputEmail" placeholder="Email">
                                       </div>
                                       <label class="control-label" for="inputUsername"style="margin-top:20px;">Choose Username</label>
                                       <div class="controls">
-                                        <input type="password" id="inputUsername" placeholder="Username">
+                                        <input type="text" name ="username" id="inputUsername" placeholder="Username">
                                       </div>
                                       <label class="control-label" for="inputPassword"style="margin-top:20px;">Choose Password</label>
                                       <div class="controls">
-                                        <input type="text" id="inputPassword" placeholder="Password">
+                                        <input type="password" name="password" id="inputPassword" placeholder="Password">
                                       </div>
                                       <label class="control-label" for="inputConfirm"style="margin-top:20px;">Confirm password</label>
                                       <div class="controls">
-                                        <input type="text" id="inputConfirm" placeholder="Password">
+                                        <input type="password" name="confirm" id="inputConfirm" placeholder="Password">
                                       </div>
                                 </form>
                             </div>
@@ -98,7 +98,7 @@
                         </button>
                         <div class="nav-collapse collapse">
                             <ul class="nav">
-                                <li><a href="">Write a Letter to the Future</a></li>
+                                <li><a href="/index/">Write a Letter to the Future</a></li>
                                 <li><a href="">Read Public Letters</a></li>
                                 <li><a href="">Help</a></li>
                                 <li><a href="">About us</a></li>
