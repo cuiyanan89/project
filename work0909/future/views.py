@@ -50,6 +50,11 @@ def account(req):
     if req.session.has_key('user'):
         user = req.session['user']
         re_text['user'] = user
+        letters = user.letter_set.all()
+        p = Paginator(letters,12)
+        page = req.GET.get('page',1)
+        contacts = p.page(page)
+        re_text['contacts'] = contacts
     return render(req,'myaccount.html',re_text)
 
 def letter(req):
@@ -115,3 +120,25 @@ def showletter(req):
     contacts = p.page(page)
     re_text['contacts'] = contacts
     return render(req,'showletter.html',re_text)
+
+def edit_letter(req):
+    if req.method == "POST":
+        email = req.POST.get('email',None)
+        public = req.POST.get('visible',None)
+        print public
+        if public == 'True':
+            public = True
+        else:
+            public = False
+        id = req.POST.get('id',None)
+        user = req.session.get('user',None)
+        letter = user.letter_set.get(id=id)
+        letter.email = email
+        letter.public = public
+        letter.save()
+    return HttpResponseRedirect('/account/')
+
+def del_letter(req):
+    letter = Letter.objects.get(id=req.GET.get('id'))
+    letter.delete()
+    return HttpResponseRedirect('/account/')

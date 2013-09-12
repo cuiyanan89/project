@@ -2,9 +2,46 @@
     <div id="middle-left" class="span4" style="box-shadow:0px 2px 5px rgba(0,0,0,0.2);border-radius:5px;width:600px;background-color:white;height:470px;">
         <div style="width:550px;">
         <table class="table"style="margin-left:25px;margin-bottom:0px;border-top:0px;">
-            <thead><tr><th class="span3">Your Letters</th><th class="span3">Date Written</th><th class="span3">Date Send To</th></tr></thead>
-            <tr class="info"><td class="span3">Your Letters</td><td class="span3">Date Written</td><td class="span3">Date Send To</td></tr>
-            <tr class="info"><td class="span3">Your Letters</td><td class="span3">Date Written</td><td class="span3">Date Send To</td></tr>
+            <thead><tr><th class="span1"style="text-align:center;">N</th><th class="span3">Your Letters</th><th class="span3">Date Written</th><th class="span3">Date Send To</th><th></th></tr></thead>
+        <script>
+            var n = 0;
+        </script>
+        {%for contact in contacts%}
+                 <div class="modal hide fade" id="{{contact.id}}_hide">
+                     <div class="modal-header">
+                     <button type="button"class="close"data-dismiss="modal">&times;</button>     
+                     <h3>{{contact.subject}}</h3>
+                     </div>
+                     <div class="modal-body">
+                        <form class="form-horizontal"id="letter_edit_form" action="/edit_letter/" method="post">{% csrf_token %}
+                            <div class="control-group">
+                              <label class="control-label" for="inputEmail"style="margin-left:100px;margin-right:20px;margin-top:0px;display:inline-block;">Send To:</label>
+                              <div class="controls" style="display:inline-block;">
+                                <input type="text" name="email" id="inputEmail" value="{{contact.email}}">        
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="inputPublic"style="margin-left:58px;margin-right:20px;margin-top:0px;display:inline-block;">Make this letter:</label>
+                              <div class="controls" style="display:inline-block;">
+                                <label style="text-align:left;display:inline-block;"><input type="radio" name="visible" value="False">Private&nbsp;&nbsp;&nbsp;</label><label style="display:inline-block;"><input type="radio" name="visible" value="True">Public(but anonymous)</label>
+                              </div>
+                            </div>
+                            <input type="hidden" name="id" value="{{contact.id}}">
+                        </form> 
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button"class="btn btn-primary"onclick="document.getElementById('letter_edit_form').submit()">Update</button>
+                     </div>
+                </div>
+            <p style="margin-left:20px;margin-right:20px;">
+                <tr id="{{contact.id}}_tr"class="info"><td style="text-align:center;"id="{{contact.id}}_num">{{contacts.start_index}}</td><td class="span3"><a data-toggle="modal" href="#{{contact.id}}_hide">{{contact.subject}}</a></td><td class="span3">{{contact.currentdate}}</td><td class="span3">{{contact.deliverdate}}</td><td><a href="/del_letter/?id={{contact.id}}" onmouseover="this.parentNode.parentNode.setAttribute('class','error');" onmouseout="this.parentNode.parentNode.setAttribute('class','info');">delete</a></td></tr>
+            </p>
+            <script>
+                var num = document.getElementById("{{contact.id}}_num");
+                num.innerHTML = Number(num.innerHTML) + n;
+                ++n;
+            </script>
+        {%endfor%}
         </table>
         </div>
     </div>
