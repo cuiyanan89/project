@@ -1,40 +1,89 @@
+<div class="modal hide fade" id="edit">
+    <div class="modal-header">
+    <button type="button"class="close"data-dismiss="modal">&times;</button>
+    <h3>Edit</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal"id="edit_form" action="/edit/" method="post">{% csrf_token %}
+            <div class="control-group">
+              <label class="control-label" for="inputEmail"style="margin-top:0px;">Email</label>
+              <div class="controls">
+                <input type="text" name="email" id="inputEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputUsername"style="margin-top:0px;">Username</label>
+              <div class="controls">
+                <input type="text" name="username" id="inputUsername" placeholder="Username">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputPassword"style="margin-top:0px;">Password</label>
+              <div class="controls">
+                <input type="password" name="password" id="inputPassword" placeholder="Password">
+              </div>
+            </div>
+            <input type="hidden" name="index">
+            <script>
+                document.getElementById('inputEmail').value="{{user.email}}";
+                document.getElementById('inputUsername').value="{{user.username}}";
+            </script>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button"class="btn btn-primary"onclick="document.getElementById('edit_form').submit()">Update Account</button>
+    </div>
+</div>
 <div id="middle" style="margin:0 auto;padding-top:115px;width:960px;">
     <div id="middle-left" class="span8" style="box-shadow:0px 2px 5px rgba(0,0,0,0.2);border-radius:5px;width:600px;background-color:white;height:470px;">
         <div style="margin-top:5px;margin-left:25px;">what do you want to say to future youself?</div>
-        <hr style="margin:10px 20px;"/>
-        <form style="margin:0px 90px;">
+        <hr style="margin:5px 20px;"/>
+        <form action="/letter/" method="post" enctype="multipart/form-data" style="margin:0px 90px;">{%csrf_token%}
             <table style="text-align:right;">
                 <tr>
-                    <td>From:</td>
-                    <td style="text-align:left;">hi.cuiyanan@gmail.com(<a href="">edit</a>)</td>
+                    {%if user%}<td>From:</td>
+                    <td style="text-align:left;">{{user.email}}(<a data-toggle="modal" href="#edit">edit</a>)</td>
                 </tr>
                 <tr>
                     <td>E-mail Address:</td>
-                    <td style="text-align:left;"><input type="text"value="hi.cuiyanan@gmail.com"/></td>
+                    <td style="text-align:left;"><input type="text" name="email" value={{user.email}}></td>
                 </tr>
+                {%else%}
+                <tr>
+                    <td>E-mail Address:</td>
+                    <td style="text-align:left;"><input type="text" name="email" value="Your Email Address"/></td>
+                </tr>
+                {%endif%}
                 <tr>
                     <td>Subject:</td>
-                    <td style="text-align:left;"><input type="text"value="A letter September 8th,2013"/></td>
+                    <td style="text-align:left;"><input id="current_text" type="text" name="subject"></td>
+                    <script>
+                        document.getElementById("current_text").value="A letter from "+Date().split(' ').splice(1,3).join('/');
+                    </script>
                 </tr>
                 <tr>
                     <td>Your Letter:</td>
-                    <td style="text-align:left;"><textarea value="Dear FutureMe,"></textarea></td>
+                    <td style="text-align:left;"><textarea name="text"rows="4"></textarea></td>
                 </tr>
                 <tr>
                     <td>Deliver on:</td>
-                    <td style="text-align:left;"><input type="date"/></td>
+                    <td style="text-align:left;"><input name="deliver"type="date"/></td>
                 </tr>
                 <tr>
                     <td>Make this letter:</td>
-                    <td style="text-align:left;">&nbsp;&nbsp;<label style="display:inline-block;"><input type="radio" name="visible"checked="checked">Private&nbsp;&nbsp;&nbsp;</label><label style="display:inline-block;"><input type="radio"name="visible">Public(but anonymous)</label></td>
+                    <td style="text-align:left;">&nbsp;&nbsp;<label style="display:inline-block;"><input type="radio" name="visible"checked="checked"value="f">Private&nbsp;&nbsp;&nbsp;</label><label style="display:inline-block;"><input type="radio"name="visible"value="t">Public(but anonymous)</label></td>
                 </tr>
                 <tr>
                     <td>Add a picture?:</td>
-                    <td><label style="position:relative;"><input class="input-medium" type="text"id="img" style="width:142px;margin-bottom:0px;float:left;"><a href=""class="btn" style="width:45px;margin-left:2px;padding-left:6px;float:left;">choose</a><input type="file"style="width:220px;position:absolute;left:0px;filter:alpha(opacity:0);opacity:0;"onchange="document.getElementById('img').value=this.value"><label></td>
+                    <td><label style="position:relative;"><input class="input-medium" type="text"id="img" style="width:142px;margin-bottom:0px;float:left;"><a href=""class="btn" style="width:45px;margin-left:2px;padding-left:6px;float:left;">choose</a><input type="file" name="picture"style="width:220px;position:absolute;left:0px;filter:alpha(opacity:0);opacity:0;"onchange="document.getElementById('img').value=this.value"><label></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td style="text-align:left;"><a href=""class="btn btn-primary">Send to the Future!</a></td>
+                    {%if user%}
+                    <td style="text-align:left;"><input type="submit" class="btn btn-primary"value="Send to the Future!"></td>
+                    {%else%}
+                    <td style="text-align:left;"><input disabled type="submit" class="btn btn-primary"value="Send to the Future!"></td>
+                    {%endif%}
                 </tr>
             </table>
         </form>

@@ -5,6 +5,9 @@ class User(models.Model):
     username = models.CharField(max_length=50)
     email = models.EmailField(max_length=75)
     password = models.CharField(max_length=100)
+    
+    def __unicode__(self):
+        return self.username
 
 class Letter(models.Model):
     email = models.EmailField(max_length=75)
@@ -16,3 +19,6 @@ class Letter(models.Model):
     public = models.BooleanField(default=False)
     maturity = models.BooleanField(default=False)
     user = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return self.subject

@@ -15,7 +15,90 @@
             <div>
                 <p class="span3">username:{{user.username}}</p>
                 <p class="span3">email:{{user.email}}</p>
-                <p class="span3">password:[**Shh,secret**]</p>
+                <p class="span3">password:[**shh! secret!**]</p>
+                <div class="modal hide fade" id="edit">
+                    <div class="modal-header">
+                    <button type="button"class="close"data-dismiss="modal">&times;</button>
+                    <h3>Edit</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal"id="edit_form" action="/edit/" method="post">{% csrf_token %}
+                            <div class="control-group">
+                              <label class="control-label" for="inputEmail"style="margin-top:0px;">Email</label>
+                              <div class="controls">
+                                <input type="text" name="email" id="inputEmail" placeholder="Email">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="inputUsername"style="margin-top:0px;">Username</label>
+                              <div class="controls">
+                                <input type="text" name="username" id="inputUsername" placeholder="Username">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="inputPassword"style="margin-top:0px;">Password</label>
+                              <div class="controls">
+                                <input type="password" name="password" id="inputPassword" placeholder="Password">
+                              </div>
+                            </div>
+                            <script>
+                                document.getElementById('inputEmail').value="{{user.email}}";
+                                document.getElementById('inputUsername').value="{{user.username}}";
+                            </script>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"class="btn btn-primary"onclick="document.getElementById('edit_form').submit()">Update Account</button>
+                    </div>
+                </div>
+                <a class="span3" data-toggle="modal"href="#edit">Edit Account Information</a>
+                <div class="modal hide fade" id="change">
+                    <div class="modal-header">
+                    <button type="button"class="close"data-dismiss="modal">&times;</button>
+                    <h3>Change Password</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal"id="change_form" action="/change/" method="post">{% csrf_token %}
+                            <div class="control-group">
+                              <label class="control-label" for="inputCurrent"style="margin-top:0px;">Current Password</label>
+                              <div class="controls">
+                                <input type="password" name="current" id="inputCurrent" placeholder="Current">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="inputNew"style="margin-top:0px;">New Password</label>
+                              <div class="controls">
+                                <input type="password" name="new" id="inputNew" placeholder="New">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="inputRepeat"style="margin-top:0px;">One More Time</label>
+                              <div class="controls">
+                                <input type="password" name="repeat" id="inputRepeat" placeholder="Repeat">
+                              </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                              <p style='float:left;margin-top:12px;height:0px;'>Remember your new password</p>
+                        <button type="button"class="btn btn-warning"onclick="document.getElementById('change_form').submit()">Change Password</button>
+                    </div>
+                </div>
+                <a class="span3" data-toggle="modal"href="#change">Change Password</a>
+                <div class="modal hide fade" id="delete">
+                    <div class="modal-header">
+                    <button type="button"class="close"data-dismiss="modal">&times;</button>
+                    <h3>Delete</h3>
+                    </div>
+                    <div class="modal-body">
+                    <p>Be careful, pressing this button, you will lose all of your information in this site, including the letter you write will be deleted, expired no longer be sent, this site will not retain any user information, that you really sure you want to delete it ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-danger" href="/delete/">Delete Account</a>
+                    </div>
+                </div>
+                <a class="span3"data-toggle="modal"href="#delete">Delete Account</a>
             </div>
         </div>
         <div style="text-align:center;">

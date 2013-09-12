@@ -1,0 +1,21 @@
+<div class="pagination"style="margin:0px;">
+<ul>
+    {%if contacts.has_previous%}
+    <li class="active"><a style="margin:0px;"href="?page={{contacts.previous_page_number}}">&laquo;</a><li>
+    {%else%}
+    <li class="disabled"><a style="margin:0px;"href="#">&laquo;</a></li>
+    {%endif%}
+    {%for page in contacts.paginator.page_range%}
+        {%if page == contacts.number%}
+            <li class="disabled"><a style="margin:0px;"href="#">{{page}}</a></li>
+        {%else%}
+            <li class="active"><a style="margin:0px;"href="?page={{page}}">{{page}}</a></li>
+        {%endif%}
+    {%endfor%}
+    {%if contacts.has_next%}
+        <li class="active"><a style="margin:0px;"href="?page={{contacts.next_page_number}}">&raquo;</a></li>
+    {%else%}
+    <li class="disabled"><a style="margin:0px;"href="#">&raquo;</a></li>
+    {%endif%}
+</ul>
+</div>

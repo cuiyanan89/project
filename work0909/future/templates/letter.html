@@ -1,0 +1,45 @@
+<div id="middle" style="margin:0 auto;padding-top:115px;width:960px;">
+    <div id="middle-left" class="span8" style="box-shadow:0px 2px 5px rgba(0,0,0,0.2);border-radius:5px;width:600px;background-color:white;height:470px;position:relative;">
+        <div style="margin-top:5px;margin-left:25px;">Public but anonymous letters,recently delivered.</div>
+        <hr style="margin:5px 20px;"/>
+        {%for contact in contacts%}
+                 <div class="modal hide fade" id="{{contact.id}}_hide">
+                     <div class="modal-header">
+                     <button type="button"class="close"data-dismiss="modal">&times;</button>
+                     <h3>{{contact.subject}}</h3>
+                     </div>
+                     <div class="modal-body">
+                     <p>{{contact.text}}</p> 
+                     </div>
+                     <div class="modal-footer">
+                     </div>
+                </div>  
+            <p style="margin-left:20px;margin-right:20px;">
+                <a data-toggle="modal"href="#{{contact.id}}_hide">{{contact.subject}}</a>
+                <span id="{{contact.id}}_span">{{contact.text}}</span>
+                <hr style="margin:5px 20px;"/>
+                <script>
+                    var letter_span = document.getElementById("{{contact.id}}_span");
+                    var text = letter_span.innerHTML;
+                    if(text.length>150){
+                       letter_span.innerHTML  = text.substr(0,150)+"......";
+                    }
+                </script>
+            </p>
+        {%endfor%}
+        <div style="text-align:center;position:absolute;bottom:10px;left:250px;">{%include "page.html"%}</div>
+    </div>
+    <div id="middle-right" class="span4" style="box-shadow:0px 2px 5px rgba(0,0,0,0.2);border-radius:5px;background-color:white;height:470px;">
+        <div style="margin-top:5px;margin-left:25px;">Public (but anonymous) letters</div>
+        <hr style="margin:10px 20px;"/>
+        <div id="left-in" style="width:260px;margin:0 auto;">
+            <div>
+                <p><a href="">Subject</a>Dear FutureMe, you're okay.you really are okay.after it all you've made it through.it's okay.cry if you need to. work hard at what you do...</p>
+                <p style="font-size:12px;">send 7 years into the future to june 26th,2013</p>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <a href="">read more letters</a>
+        </div>
+    </div>
+</div>
