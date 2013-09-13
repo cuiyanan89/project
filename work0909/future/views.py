@@ -4,8 +4,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from future.models import User,Letter
 from django.core.paginator import Paginator
 import hashlib
-import time
-
+from message import singleton,CheckAndSend
 
 
 
@@ -142,3 +141,23 @@ def del_letter(req):
     letter = Letter.objects.get(id=req.GET.get('id'))
     letter.delete()
     return HttpResponseRedirect('/account/')
+
+def search_view(req):
+    re_text = {'user':None}
+    if req.session.has_key('user'):
+        user = req.session['user']
+        re_text['user'] = user
+    search_letter = []
+    letters = Letter.objects.filter(public=True)
+    if req.method == "POST":
+        search_text = req.POST.get('search_text',None)
+        if search_text:
+            for letter in letters:
+                if search_text in letter.subject:
+                    search_letter.append(letter)
+
+    p = Paginator(search_letter,4)
+    page = req.GET.get('page',1)
+    contacts = p.page(page)
+    re_text['contacts'] = contacts
+    return render(req,'showletter.html',re_text)

@@ -37,7 +37,7 @@ def message(letter):
     currentdate = letter[5]
 
     msg = MIMEText(text,_subtype="plain",_charset='gb2312')
-    image = MIMEImage(open())
+#    image = MIMEImage(open())
     msg['Subject'] = Header(subject)
     smtp = smtplib.SMTP("smtp.qq.com")
     smtp.ehlo()

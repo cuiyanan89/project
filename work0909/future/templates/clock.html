@@ -1,0 +1,203 @@
+<div id="ann_div">
+<canvas id="clock" width="160" height="160"></canvas></div>
+<script type="text/javascript">
+
+window.onload = function(){
+
+var clockWidth = 160; 
+
+var clockHeight = 160;
+
+var clock = document.createElement("canvas");
+
+clock.setAttribute("id", "clock");
+
+clock.setAttribute("width", clockWidth);
+
+clock.setAttribute("height", clockHeight);
+
+clock.innerHTML = "";
+
+var clustrmaps = document.getElementById("clustrmaps");
+
+var ann_div = document.getElementById('ann_div');
+
+ann_div.insertBefore(clock,clustrmaps);
+
+clock = document.getElementById("clock");
+
+//var clockWidth = clock.width;
+
+//var clockHeight = clock.height;
+
+// 值定义 
+
+var br = clockWidth/5*2;
+
+var sr = clockWidth/5*2 - 4;
+
+var arcColor = "#000000";
+
+var textColor = "#ff0000";
+
+var hourColor = "#00ff00";
+
+var minuteColor = "#0000ff";
+
+var secColor = "#ff0000";
+
+var hourlen = sr * 2 / 3;
+
+var minlen = sr * 3 / 4;
+
+var seclen = sr * 4 / 5;
+
+var arcWidth = 1;
+
+//////////////////////////
+
+if(typeof clock.getContext == 'undefined') return;
+
+var ctx = clock.getContext('2d');
+
+var metrics = ctx.measureText("12");
+
+//console.log(metrics.width);
+
+function drawPointer(){
+
+              ctx.clearRect(0,0,clockWidth, clockHeight);
+
+              ctx.save();
+
+              ctx.strokeStyle = arcColor;
+
+              ctx.lineWidth = arcWidth;
+
+              // big arc
+
+              ctx.beginPath();
+
+              ctx.arc(clockWidth/2, clockHeight/2,br,0,2 * Math.PI,true);
+
+              ctx.stroke();
+
+              // small arc
+
+              ctx.beginPath();
+
+              ctx.arc(clockWidth/2, clockHeight/2,sr,0,2 * Math.PI,true);
+
+              ctx.stroke();
+
+              // pointer
+
+              ctx.beginPath();
+
+              ctx.arc(clockWidth/2, clockHeight/2,2,0,2 * Math.PI,true);
+
+              ctx.stroke();
+
+              ctx.restore();
+
+              ctx.save(); 
+
+              ctx.fillStyle = textColor; 
+
+              ctx.fillText("12",clockWidth/2-metrics.width/2, clockHeight/2 - sr + 12);
+
+              ctx.fillText("3",clockWidth/2 + sr - 12, clockHeight/2);
+
+              ctx.fillText("6",clockWidth/2, clockHeight/2 + sr - 6);
+
+              ctx.fillText("9",clockWidth/2 - sr + 6, clockHeight/2);
+
+              ctx.fillStyle = arcColor;
+
+              for(var i = 0; i < 12;i++){
+
+                  var px = clockWidth/2 -2 - (sr-3)*Math.sin(2*Math.PI - i / 6 * Math.PI) ;
+
+                  var py = clockWidth/2 +6 - (sr-3)*Math.cos(2*Math.PI - i / 6 * Math.PI);
+
+                  ctx.fillText("*",px,py);
+
+              }
+
+              var date = new Date();
+
+              var hour = date.getHours();
+
+              var min = date.getMinutes();
+
+              var sec = date.getSeconds(); var tarX = 0;
+
+              var tarY = 0;
+
+              hour = (hour % 12 + min/60) * 5; //console.log(hour);
+
+              // 注意将笛卡尔坐标系转换为屏幕坐标系
+
+             tarX = -hourlen * Math.sin(2*Math.PI - hour / 30 * Math.PI);
+
+             tarY = -hourlen * Math.cos(2*Math.PI - hour / 30 * Math.PI); //console.log(tarX+","+tarY);
+
+              ctx.restore(); 
+
+              ctx.save();
+
+              ctx.beginPath(); 
+
+              ctx.strokeStyle = hourColor;
+
+              ctx.moveTo(clockWidth/2, clockHeight/2);
+
+              ctx.lineTo(clockWidth/2 + tarX,clockHeight/2 + tarY);
+
+              ctx.stroke();
+
+              tarX = -minlen * Math.sin(2*Math.PI - min / 30 * Math.PI);
+
+              tarY = -minlen * Math.cos(2*Math.PI - min / 30 * Math.PI); ctx.restore();
+
+              ctx.save();
+
+              ctx.beginPath();
+
+              ctx.strokeStyle = minuteColor;
+
+              ctx.moveTo(clockWidth/2, clockHeight/2);
+
+              ctx.lineTo(clockWidth/2 + tarX,clockHeight/2 + tarY);
+
+              ctx.stroke();
+
+              tarX = -seclen * Math.sin(2*Math.PI - sec / 30 * Math.PI); tarY = -seclen * Math.cos(2*Math.PI - sec / 30 * Math.PI); ctx.restore();
+
+              ctx.save();
+
+              ctx.beginPath(); // 重新开始PATH绘制，如果没有这一句表示路径还在绘制，而这里改变了路径的颜色，所以会整个路径的颜色改变
+
+              ctx.strokeStyle = secColor;
+
+              ctx.moveTo(clockWidth/2, clockHeight/2);
+
+              ctx.lineTo(clockWidth/2 + tarX,clockHeight/2 + tarY);
+
+              ctx.stroke();
+
+              window.setTimeout(function(){
+
+              drawPointer();
+
+              //console.log(1);
+
+              },1000);
+
+}
+
+drawPointer();
+
+}
+
+</script>

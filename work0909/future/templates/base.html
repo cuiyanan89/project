@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <link rel="shortcut icon" href="/static/img/future.ico"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>tofuture me</title>
         <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
@@ -106,9 +107,9 @@
                                 <li><a href="">Help</a></li>
                                 <li><a href="">About us</a></li>
                             </ul>
-                            <form class="form-search" style="float:right;">
+                            <form action="/search/" method="post"class="form-search" style="float:right;">{%csrf_token%}
                                 <div class="input-append" style="margin:5px 20px;">
-                                    <input type="text"class="span2 search-query">
+                                    <input name="search_text" type="text"class="span2 search-query">
                                     <button type="submit"class="btn">Search</button>
                                 </div>
                             </form>
