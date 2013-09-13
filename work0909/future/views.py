@@ -126,7 +126,7 @@ def edit_letter(req):
         email = req.POST.get('email',None)
         public = req.POST.get('visible',None)
         print public
-        if public == 'True':
+        if public == 't':
             public = True
         else:
             public = False

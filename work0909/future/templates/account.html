@@ -13,7 +13,7 @@
                      <h3>{{contact.subject}}</h3>
                      </div>
                      <div class="modal-body">
-                        <form class="form-horizontal"id="letter_edit_form" action="/edit_letter/" method="post">{% csrf_token %}
+                        <form class="form-horizontal"id="{{contact.id}}_letter_edit_form" action="/edit_letter/" method="post">{% csrf_token %}
                             <div class="control-group">
                               <label class="control-label" for="inputEmail"style="margin-left:100px;margin-right:20px;margin-top:0px;display:inline-block;">Send To:</label>
                               <div class="controls" style="display:inline-block;">
@@ -23,14 +23,21 @@
                             <div class="control-group">
                               <label class="control-label" for="inputPublic"style="margin-left:58px;margin-right:20px;margin-top:0px;display:inline-block;">Make this letter:</label>
                               <div class="controls" style="display:inline-block;">
-                                <label style="text-align:left;display:inline-block;"><input type="radio" name="visible" value="False">Private&nbsp;&nbsp;&nbsp;</label><label style="display:inline-block;"><input type="radio" name="visible" value="True">Public(but anonymous)</label>
+                                <label style="text-align:left;display:inline-block;"><input id="{{contact.id}}_f" type="radio" name="visible" value='f'>Private&nbsp;&nbsp;&nbsp;</label><label style="display:inline-block;"><input id="{{contact.id}}_t" type="radio" name="visible" value='t'>Public(but anonymous)</label>
                               </div>
+                              <script>
+                                if("{{contact.public}}"=="False"){
+                                    document.getElementById("{{contact.id}}_f").setAttribute('checked','checked');
+                                }else{
+                                    document.getElementById("{{contact.id}}_t").setAttribute('checked','checked');
+                                }
+                              </script>
                             </div>
                             <input type="hidden" name="id" value="{{contact.id}}">
                         </form> 
                      </div>
                      <div class="modal-footer">
-                        <button type="button"class="btn btn-primary"onclick="document.getElementById('letter_edit_form').submit()">Update</button>
+                        <button type="button"class="btn btn-primary"onclick="document.getElementById('{{contact.id}}_letter_edit_form').submit()">Update</button>
                      </div>
                 </div>
             <p style="margin-left:20px;margin-right:20px;">
