@@ -33,7 +33,7 @@ class CheckAndSend(threading.Thread):
                 print letter[1].strftime("%Y%m%d")
             except:
                 pass
-            date_now = '20130917'
+#            date_now = '20130917'
             send_list = []
             for letter in letter_list:
                 if letter[1].strftime('%Y%m%d') == date_now:
@@ -75,7 +75,7 @@ class CheckAndSend(threading.Thread):
                 if send_ok:
                     cursor.execute("update future_letter set maturity = 1 where id=%d"%id)
                     conn.commit()
-                cursor.close()
-                conn.close()
-                time.sleep(900)
+                    cursor.close()
+                    conn.close()
+                    time.sleep(900)
 #            time.sleep(86000)
