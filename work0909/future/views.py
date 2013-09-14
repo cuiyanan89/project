@@ -50,7 +50,7 @@ def account(req):
         user = req.session['user']
         re_text['user'] = user
         letters = user.letter_set.all()
-        p = Paginator(letters,12)
+        p = Paginator(letters,10)
         page = req.GET.get('page',1)
         contacts = p.page(page)
         re_text['contacts'] = contacts
