@@ -63,6 +63,7 @@ class CheckAndSend(threading.Thread):
                         print smtp.helo()
                         conn_off = False
                     except:
+                        time.sleep(10)
                         smtp.close()
                 print smtp.login('332761705@qq.com','cuiyanan891227')
                 try:

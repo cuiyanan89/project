@@ -27,5 +27,7 @@ urlpatterns = patterns('',
     url(r'^edit_letter/$','future.views.edit_letter'),
     url(r'^del_letter/$','future.views.del_letter'),
     url(r'^search/$','future.views.search_view'),
+    url(r'^help/$','future.views.help'),
+    url(r'^aboutus/$','future.views.aboutus'),
 #    url(r'^model/$','future.views.model'),
 )

@@ -161,3 +161,18 @@ def search_view(req):
     contacts = p.page(page)
     re_text['contacts'] = contacts
     return render(req,'showletter.html',re_text)
+
+
+def help(req):
+    re_text = {'user':None}
+    if req.session.has_key('user'):
+        user = req.session['user']
+        re_text['user'] = user
+    return render_to_response('help.html',re_text)
+
+def aboutus(req):
+    re_text = {'user':None}
+    if req.session.has_key('user'):
+        user = req.session['user']
+        re_text['user'] = user
+    return render_to_response('aboutus.html',re_text)
