@@ -5,7 +5,10 @@ from future.models import User,Letter
 from django.core.paginator import Paginator
 import hashlib
 from message import singleton,CheckAndSend
+from message import CheckAndSend
 
+send = CheckAndSend()
+#send.run()
 
 
 def index(req):
@@ -114,6 +117,7 @@ def showletter(req):
         user = req.session['user']
         re_text['user'] = user
     letters = Letter.objects.filter(public=True)
+    letters = letters.filter(maturity=True)
     p = Paginator(letters,4)
     page = req.GET.get('page',1)
     contacts = p.page(page)

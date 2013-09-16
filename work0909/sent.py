@@ -50,10 +50,10 @@ def message(letter):
             conn_off = False
         except:
             smtp.close()
-    smtp.login('tofutureme@qq.com','cuiyanan891227')
+    smtp.login('332761705@qq.com','cuiyanan891227')
     receiver = 'cuiyanan@outlook.com'
     try:
-        smtp.sendmail('tofutureme@qq.com',receiver,msg.as_string())
+        smtp.sendmail('332761705@qq.com',receiver,msg.as_string())
         return True
     except:
         return False
