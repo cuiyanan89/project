@@ -37,7 +37,7 @@ class CheckAndSend(threading.Thread):
             for letter in letter_list:
                 if letter[1].strftime('%Y%m%d') == date_now:
                     send_list.append(letter[0])
-            print send_list
+#            print send_list
 #            x = raw_input()
             if len(send_list) != 0:
                 for id in send_list:
@@ -92,5 +92,6 @@ class CheckAndSend(threading.Thread):
                     conn.commit()
             cursor.close()
             conn.close()
-            time.sleep(900)
+            time.sleep(10)
+#            time.sleep(900)
 #            time.sleep(86000)
