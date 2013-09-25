@@ -1,0 +1,18 @@
+<div class='module'>
+    <div class='module-header inner'>
+        <strong>帖子</strong>
+    </div>
+    <div class="inner" style="background-color:white;border-top-left-radius:0px;border-top-right-radius:0px;">
+    {%load markup%}
+    <p>{{posts.content|markdown:'codehilite'}}</p>
+    </div>
+    <div class='module-header inner'style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;">
+        <strong></strong>
+    </div>
+</div>
+<div class='module'>
+    <div class="inner" style="background-color:white;border-radius:3px;">
+    {%load duoshuo_tags%}
+    {%duoshuo_comments%}
+    </div>
+</div>

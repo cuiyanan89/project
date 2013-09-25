@@ -2,7 +2,7 @@
 import os.path
 head = os.path.dirname(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -25,7 +25,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,6 +69,7 @@ STATIC_ROOT = ''
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     os.path.join(head,'static'),
@@ -124,10 +125,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-     'django.contrib.admin',
+    'grappelli',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'blog',
+    'duoshuo',
+    'django.contrib.markup',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -158,3 +162,7 @@ LOGGING = {
         },
     }
 }
+
+
+DUOSHUO_SECRET = '123123'
+DUOSHUO_SHORT_NAME ='cuiyanan'
