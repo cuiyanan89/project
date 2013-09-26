@@ -16,7 +16,8 @@ def post(req):
     return render_to_response('posts.html',{'n':[1,2,3],'posts':posts})
 
 def node(req):
-    return render_to_response('nodes.html',{'n':[1,2,3]})
+    nodes = Node.objects.all()
+    return render_to_response('nodes.html',{'n':[1,2,3],'nodes':nodes})
 
 def replay(req):
     return render_to_response('replay.html',{'n':[1,2,3]})
