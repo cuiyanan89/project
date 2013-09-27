@@ -1,7 +1,24 @@
 {%extends 'base.html'%}
 {%block left%}
-{%include 'leftpost.html'%}
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"cuiyanan"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<div class='module'>
+    <div class="module-header inner">
+        <strong>最新评论</strong>
+    </div>
+    <div class="module-body">
+        <ul class="ds-recent-comments" data-show-title="1" data-show-time="0"></ul>
+    </div>
+</div>
 {%endblock%}
 {%block right%}
-{%include 'node.html'%}
+{%include 'global.html'%}
 {%endblock%}

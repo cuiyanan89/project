@@ -1,18 +1,16 @@
 <div class='module'>
     <div class='module-header inner'>
-        <strong>{{node.nodename}}下的帖子</strong>
+        <strong>节点</strong>
     </div>
     <div class='module-body'>
         <div class="item-list">
-            {%for post in node.post_set.all%}
+            {%for node in nodes%}
             <div class="item hentry">
-                <h3 class="title"><a href="/post/?id={{post.id}}">{{post.title}}</a></h3>
+                <h3 class="title"><a href="/post/?id={{node.id}}">{{node.nodename}}</a></h3>
                 <div class="meta">
-                    <span>{{post.node.nodename}}</span>
+                    <span>话题{{node.post_set.count}}</span>
                     <span>@</span>
-                    <span>{{post.create_time}}</span>
-                    <span>·</span>
-                    <span class="ds-thread-count" data-thread-key="{{post.id}}"></span>
+                    <span>{{node.create_time}}</span>
                 </div>
             </div>
             {%endfor%}
